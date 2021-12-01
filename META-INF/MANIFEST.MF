@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eclipse-as3mxml
+Bundle-SymbolicName: com.as3mxml.eclipse;singleton:=true
+Bundle-Version: 1.0.0.alpha
+Bundle-Activator: com.as3mxml.eclipse.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.tm4e.core;bundle-version="0.4.1",
+ org.eclipse.tm4e.registry;bundle-version="0.4.0",
+ org.eclipse.tm4e.ui;bundle-version="0.4.1",
+ org.eclipse.ui.genericeditor;bundle-version="1.2.0",
+ org.eclipse.lsp4e;bundle-version="0.13.6",
+ org.eclipse.tm4e.languageconfiguration;bundle-version="0.3.5"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: com.as3mxml.eclipse
+Bundle-ActivationPolicy: lazy
