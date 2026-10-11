@@ -68,10 +68,6 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#primitive_functions</string>
-		</dict>
-		<dict>
-			<key>include</key>
 			<string>#language_constants</string>
 		</dict>
 		<dict>
@@ -122,6 +118,14 @@
 			<key>include</key>
 			<string>#functions</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#primitive_functions</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#function_call</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -138,6 +142,26 @@
 			<string>(\[|\])</string>
 			<key>name</key>
 			<string>keyword.operator.actionscript.3</string>
+		</dict>
+		<key>conditional_compilation</key>
+		<dict>
+			<key>match</key>
+			<string>(?x) (^|\s+|;) (\b\w+\b)::(\b\w+\b)</string>
+			<key>captures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.other.actionscript.3</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>constant.other.actionscript.3</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.conditional.actionscript.3</string>
 		</dict>
 		<key>class</key>
 		<dict>
@@ -170,6 +194,10 @@
 				<dict>
 					<key>include</key>
 					<string>#class_declaration</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#declaration_code_block</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -206,10 +234,6 @@
 				<dict>
 					<key>include</key>
 					<string>#dynamic_type</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#primitive_functions</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -259,6 +283,18 @@
 					<key>include</key>
 					<string>#object_literal</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#conditional_compilation</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#primitive_functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function_call</string>
+				</dict>
 			</array>
 		</dict>
 		<key>namespace_declaration</key>
@@ -285,7 +321,7 @@
 		<dict>
 			<key>begin</key>
 			<!-- dots are displayed in hover tooltips -->
-			<string>(?x) \b(class)\b \s+ ([\.\w]+|\*)</string>
+			<string>(?x) \b(class)\b \s+ ([A-Za-z0-9_\$\.]+|\*)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -319,7 +355,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>code_block</key>
+		<key>declaration_code_block</key>
 		<dict>
 			<key>begin</key>
 			<string>\{</string>
@@ -331,7 +367,11 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#code_block</string>
+					<string>#method</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#variable_declaration</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -344,10 +384,6 @@
 				<dict>
 					<key>include</key>
 					<string>#regexp</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#variable_declaration</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -364,10 +400,6 @@
 				<dict>
 					<key>include</key>
 					<string>#dynamic_type</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#primitive_functions</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -425,6 +457,126 @@
 					<key>include</key>
 					<string>#import</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#primitive_functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function_call</string>
+				</dict>
+			</array>
+		</dict>
+		<key>local_code_block</key>
+		<dict>
+			<key>begin</key>
+			<string>\{</string>
+			<key>end</key>
+			<string>\}</string>
+			<key>name</key>
+			<string>meta.code_block.actionscript.3</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#local_code_block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#strings</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#regexp</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#variable_declaration</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#numbers</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#primitive_types</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#primitive_error_types</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#dynamic_type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#language_constants</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#language_variables</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#guess_type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#guess_constant</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#other_operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#arithmetic_operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#logical_operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#array_access_operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#vector_creation_operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#control_keywords</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#other_keywords</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#use_namespace</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#import</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#primitive_functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function_call</string>
+				</dict>
 			</array>
 		</dict>
 		<key>comments</key>
@@ -467,7 +619,7 @@
 		<key>control_keywords</key>
 		<dict>
 			<key>match</key>
-			<string>\b(if|else|do|while|for|each|continue|return|switch|case|default|break|try|catch|finally|throw)\b</string>
+			<string>\b(if|else|do|while|for|each|continue|return|switch|case|default|break|try|catch|finally|throw|with)\b</string>
 			<key>name</key>
 			<string>keyword.control.actionscript.3</string>
 		</dict>
@@ -512,7 +664,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?x) \b(extends)\b \s+ ([\.\w]+) \s* (?:, \s* ([\.\w]+))* \s*</string>
+			<string>(?x) \b(extends)\b \s+ ([A-Za-z0-9_\$\.]+) \s* (?:, \s* ([A-Za-z0-9_\$\.]+))* \s*</string>
 			<key>name</key>
 			<string>meta.extends.actionscript.3</string>
 		</dict>
@@ -713,7 +865,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?x) \b(implements)\b \s+ ([\.\w]+) \s* (?:, \s* ([\.\w]+))* \s*</string>
+			<string>(?x) \b(implements)\b \s+ ([A-Za-z0-9_\$\.]+) \s* (?:, \s* ([A-Za-z0-9_\$\.]+))* \s*</string>
 			<key>name</key>
 			<string>meta.implements.actionscript.3</string>
 		</dict>
@@ -779,7 +931,7 @@
 		<dict>
 			<key>begin</key>
 			<!-- dots are displayed in hover tooltips -->
-			<string>(?x) \b(interface)\b \s+ ([\.\w]+)</string>
+			<string>(?x) \b(interface)\b \s+ ([A-Za-z0-9_\$\.]+)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -864,7 +1016,7 @@
 		<key>method</key>
 		<dict>
 			<key>begin</key>
-			<string>(?x) (^|\s+) ((\w+)\s+)? ((\w+)\s+)? ((\w+)\s+)? (\w+) (?=\s+\bfunction\b)</string>
+			<string>(?x) (^|\s+) ((\w+)\s+)? ((\w+)\s+)? ((\w+)\s+)? ((\w+)\s+)? (?=\bfunction\b)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>3</key>
@@ -900,7 +1052,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#code_block</string>
+					<string>#local_code_block</string>
 				</dict>
 			</array>
 		</dict>
@@ -976,10 +1128,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#primitive_functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#language_constants</string>
 				</dict>
 				<dict>
@@ -1017,6 +1165,14 @@
 				<dict>
 					<key>include</key>
 					<string>#variable_declaration</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#primitive_functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function_call</string>
 				</dict>
 			</array>
 		</dict>
@@ -1071,10 +1227,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#primitive_functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#language_constants</string>
 				</dict>
 				<dict>
@@ -1100,6 +1252,14 @@
 				<dict>
 					<key>include</key>
 					<string>#functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#primitive_functions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function_call</string>
 				</dict>
 			</array>
 		</dict>
@@ -1241,6 +1401,19 @@
 			<key>match</key>
 			<string>\b(decodeURI|decodeURIComponent|encodeURI|encodeURIComponent|escape|isFinite|isNaN|isXMLName|parseFloat|parseInt|trace|unescape)(?=\s*\()</string>
 		</dict>
+		<key>function_call</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.actionscript.3</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\b([A-Za-z0-9_\$]+)(?=\s*\()</string>
+		</dict>
 		<key>regexp</key>
 		<dict>
 			<key>begin</key>
@@ -1299,6 +1472,14 @@
 			<array>
 				<dict>
 					<key>begin</key>
+					<string>@"</string>
+					<key>end</key>
+					<string>"</string>
+					<key>name</key>
+					<string>string.quoted.verbatim.actionscript.3</string>
+				</dict>
+				<dict>
+					<key>begin</key>
 					<string>"</string>
 					<key>end</key>
 					<string>"</string>
@@ -1332,7 +1513,7 @@
 		<key>metadata</key>
 		<dict>
 			<key>begin</key>
-			<string>\[\s*\b(\w+)\b</string>
+			<string>(?&lt;=(?:^|;|\}|\{|\*\/)\s*)\[\s*\b([A-Za-z_\$][A-Za-z0-9_\$]+)\b</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
